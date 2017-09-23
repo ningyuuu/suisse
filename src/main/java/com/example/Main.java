@@ -127,8 +127,10 @@ public class Main {
 
   @RequestMapping(value = "/sort", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public int[] sort(@RequestBody int[] array){
-    return array;
+  public String sort(@RequestBody int[] array){
+    JSONObject response = new JSONObject();
+    response.put("return", array);
+    return response.toString();
   }
 
   @Bean
