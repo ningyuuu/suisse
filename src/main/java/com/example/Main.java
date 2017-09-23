@@ -111,6 +111,13 @@ public class Main {
     }
   }
 
+
+  @RequestMapping(value = "/sort", method = RequestMethod.POST, produces="application/json")
+  @ResponseBody
+  public int[] sort(@RequestBody int[] array){
+    return array;
+  }
+
   @Bean
   public DataSource dataSource() throws SQLException {
     if (dbUrl == null || dbUrl.isEmpty()) {
