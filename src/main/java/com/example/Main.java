@@ -87,7 +87,7 @@ public class Main {
       return response;
   }
 
-  public class InputWrapper {
+  public static class InputWrapper {
     private int number;
     private String word;
 
