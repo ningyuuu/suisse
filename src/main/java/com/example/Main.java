@@ -129,9 +129,9 @@ public class Main {
 
   @RequestMapping(value = "/sort", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public int[] sort(@RequestBody int[] numbers){
+  public ArrayList<Integer> sort(@RequestBody ArrayList<Integer> numbers){
     // JSONObject response = new JSONObject();
-    Arrays.sort(numbers);
+    Collections.sort(numbers);
     return numbers;    
   }
 
