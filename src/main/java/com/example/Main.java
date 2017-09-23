@@ -36,8 +36,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 import com.example.Jewellery;
 import com.example.JewelleryWrapper;
@@ -104,8 +103,22 @@ public class Main {
     Jewellery jewellery = new Jewellery(wrapper);
     jewellery.calcResult();
     double result = jewellery.getResult();
+    ArrayList<Bag> vault = jewellery.getVault();
+    // double[] weight = new double[4];
+    // double[] value = new double[4];
+    // double[] unitvalue = new double[4];
+    // for(int i=0; i<4; i++){
+    //   weight[i] = vault.get(i).getWeight();
+    //   value[i] = vault.get(i).getValue();
+    //   unitvalue[i] = vault.get(i).getUnitValue();
+    // }
+
     JSONObject response = new JSONObject();
     response.put("heist", result);
+    // response.put("sorted weight", weight);
+    // response.put("sorted value", value);
+    // response.put("sorted unitvalue", unitvalue);
+
     return response.toString();
   }
 
@@ -132,10 +145,10 @@ public class Main {
 
   @RequestMapping(value = "/sort", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String sort(@RequestBody int[] array){
-    JSONObject response = new JSONObject();
-    response.put("return", array);
-    return response.toString();
+  public ArrayList<Integer> sort(@RequestBody ArrayList<Integer> numbers){
+    // JSONObject response = new JSONObject();
+    Collections.sort(numbers);
+    return numbers;    
   }
 
   @Bean

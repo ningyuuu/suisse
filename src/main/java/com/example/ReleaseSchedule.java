@@ -4,7 +4,6 @@ import java.util.*;
 import java.text.*;
 
 public class ReleaseSchedule {
-
 	Timeline tl;
 	
 	public ReleaseSchedule(ArrayList<String> input) {
