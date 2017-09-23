@@ -80,7 +80,7 @@ public class Main {
 
   @RequestMapping(value = "/ningyu", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public @ResponseBody String ningyu(@RequestBody InputWrapper wrapper) {
+  public String ningyu(@RequestBody  wrapper) {
     int number = wrapper.getNumber();
     String word = wrapper.getWord();
     // String response = "number is " + number + " , and word is " + word;
