@@ -1,5 +1,5 @@
 import java.util.*;
-import example.*;
+import com.example.*;
 
 public class Jewellery {
     private ArrayList<Bag> vault;
