@@ -87,7 +87,7 @@ public class Main {
     String word = wrapper.getWord();
     // String response = "number is " + number + " , and word is " + word;
     response.put("response","thanks");
-      return response.;
+      return response;
   }
 
   public static class InputWrapper {
