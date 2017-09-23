@@ -7,6 +7,8 @@ public class Jewellery {
     private ArrayList<Bag> vault;
     private double maxWeight;
     private double result = 0;
+    private double totalWeight = 0;
+    private double totalValue = 0;    
     // private double[] testWeight = new double[4];
     // private double[] testValue = new double[4];
 
@@ -16,8 +18,10 @@ public class Jewellery {
 
         if(input.getVault().size() != 0 ){
             for (HashMap<String, Double> item: input.getVault()) {
-                try{  
-                     vault.add(new Bag(item.get("weight"), item.get("value")));
+                try{      
+                     vault.add(new Bag(item.get("weight"), item.get("value")));            
+                     totalWeight += item.get("weight");
+                     totalValue += item.get("value");
                 } catch (Exception e) {}               
             }
         }        
@@ -30,6 +34,10 @@ public class Jewellery {
 
     public void calcResult() {
         if(vault.size() == 0 ){
+            return;
+        }
+        if(maxWeight >= totalWeight){
+            result = totalValue;
             return;
         }
         int index = 0;
