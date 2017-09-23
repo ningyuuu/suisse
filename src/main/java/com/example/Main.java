@@ -86,6 +86,8 @@ public class Main {
     int number = wrapper.getNumber();
     String word = wrapper.getWord();
     int[] array = wrapper.getArray();
+    number += 50;
+    array[2] = 30;
     // String response = "number is " + number + " , and word is " + word;
     response.put("number", number);
     response.put("myword", word);
