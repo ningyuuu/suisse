@@ -76,8 +76,8 @@ public class Main {
 
   @RequestMapping(value = "/ningyu", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String logs(@RequestBody Map<String, String> body) {
-      return body.get("json");
+  String ningyu(@RequestParam("json") String json) {
+      return json;
   }
 
   @Bean
