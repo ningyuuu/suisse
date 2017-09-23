@@ -109,6 +109,10 @@ public class Main {
     return response.toString();
   }
 
+  @RequestMapping(value="/releaseSchedule", method=RequestMethod.POST, produces="application/json")
+  @ResponseBody
+  public String releaseSchedule(@RequestBody ArrayList<String>)
+
   public static class InputWrapper {
     private int number;
     private String word;
