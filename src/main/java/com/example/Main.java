@@ -39,6 +39,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
+import example.*;
+
 @Controller
 @SpringBootApplication
 public class Main {
@@ -95,11 +97,22 @@ public class Main {
       return response.toString();
   }
 
+  @RequestMapping(value="/heist", method=RequestMethod.POST, produces="application/json")
+  @ResponseBody
+  public String heist(@RequestBody JewelleryWrapper wrapper) {
+    Jewellery jewellery = new Jewellery(wrapper);
+    jewellery.calcResult();
+    double result = jewellery.getResult();
+    JSONObject response = new JSONObject();
+    response.put("heist", result);
+    return response.toString();
+  }
+
   public static class InputWrapper {
     private int number;
     private String word;
     private int[] array;
-
+  
     public int getNumber(){
       return number;      
     }

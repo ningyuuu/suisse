@@ -5,11 +5,11 @@ public class Jewellery {
     private int maxWeight;
     private double result;
 
-    public Jewellery(JsonObject input) {
+    public Jewellery(JewelleryWrapper input) {
         vault = new ArrayList<Bag>();
 
-        for (JsonObject item: input.vault) {
-            vault.add(new Bag(item.weight, item.value));
+        for (HashMap<Double, Double> item: input.getVault()) {
+            vault.add(new Bag(item.get("weight"), item.get("value")));
         }
 
         Collections.sort(vault);
@@ -36,8 +36,7 @@ public class Jewellery {
 }
 
 class Bag implements Comparable<Bag> {
-    private int weight;
-    private double value, unitvalue;
+    private double weight, value, unitvalue;
 
     public Bag(int weight, double value) {
         weight = weight;
@@ -53,11 +52,24 @@ class Bag implements Comparable<Bag> {
         return unitvalue;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
     public double getValue() {
         return value;
+    }
+}
+
+class JewelleryWrapper {
+    private double maxWeight;
+    private ArrayList<HashMap<Double, Double>> vault;
+
+    public double getMaxWeight() {
+        return maxWeight;
+    }
+
+    public ArrayList<HashMap<Double, Double>> getVault() {
+        return vault;
     }
 }
