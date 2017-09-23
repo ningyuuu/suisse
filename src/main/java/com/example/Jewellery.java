@@ -16,7 +16,9 @@ public class Jewellery {
 
         if(input.getVault().size() != 0 ){
             for (HashMap<String, Double> item: input.getVault()) {
-                vault.add(new Bag(item.get("weight"), item.get("value")));
+                try{  
+                     vault.add(new Bag(item.get("weight"), item.get("value")));
+                } catch (Exception e) {}               
             }
         }        
 
