@@ -26,6 +26,7 @@ public class Jewellery {
 
     public void calcResult() {
         if(vault.isEmpty()){
+            result = 0;
             return;
         }
         int index = 0;
