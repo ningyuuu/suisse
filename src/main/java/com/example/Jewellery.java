@@ -6,16 +6,22 @@ import com.example.*;
 public class Jewellery {
     private ArrayList<Bag> vault;
     private int maxWeight;
-    private double result;
+    private double result = 0;
+    // private double[] testWeight = new double[4];
+    // private double[] testValue = new double[4];
+
 
     public Jewellery(JewelleryWrapper input) {
         vault = new ArrayList<Bag>();
 
-        for (HashMap<Double, Double> item: input.getVault()) {
+        for (HashMap<String, Double> item: input.getVault()) {
             vault.add(new Bag(item.get("weight"), item.get("value")));
         }
 
+        this.maxWeight = input.getMaxWeight();
+        
         Collections.sort(vault);
+
     }
 
     public void calcResult() {
@@ -30,11 +36,16 @@ public class Jewellery {
                 result += curr.getUnitValue() * maxWeight;
                 maxWeight = 0;
             }
+            index++;
         }
     }
 
     public double getResult() {
         return result;
+    }
+
+    public ArrayList<Bag> getVault(){
+        return vault;
     }
 }
 
@@ -42,8 +53,8 @@ class Bag implements Comparable<Bag> {
     private double weight, value, unitvalue;
 
     public Bag(double weight, double value) {
-        weight = weight;
-        value = value;
+        this.weight = weight;
+        this.value = value;
         unitvalue = value / weight;
     }
 
@@ -61,5 +72,10 @@ class Bag implements Comparable<Bag> {
 
     public double getValue() {
         return value;
+    }
+
+    public String toString(){
+        String response = "weight: " + weight + ", value: " + value + ", unitvalue: " + unitvalue;
+        return response;
     }
 }
