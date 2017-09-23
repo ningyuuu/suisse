@@ -1,28 +1,63 @@
+import java.util.*;
+
 public class Jewellery {
- 	public static void main(String[] args) {
+    private ArrayList<Bag> vault;
+    private int maxWeight;
+    private double result;
 
-		ArrayList<Arraylist<Double>> vault = new ArrayList<ArrayList<Double>>();
-		int maxWeight = weight;
+    public Jewellery(JsonObject input) {
+        vault = new ArrayList<Bag>();
 
-		ArrayList<Double> eachBag = new ArrayList<Double>();
-		//ArrayList<ArrayList<Double>> valuePerKg = new ArrayList<ArrayList<Double>>();
-		double result = 0;
-
-        for(int i = 0; i <= vault.size(); i++) {
-        	eachBag = vault.get(i);
-        	eachBag.add(eachBag.get(1)/eachBag.get(0));
-        	vault.set(i, eachBag);
+        for (JsonObject item: input.vault) {
+            vault.add(new Bag(item.weight, item.value));
         }
 
-        
+        Collections.sort(vault);
+    }
 
-        while(maxWeight > 0) {
-        	for(int i = 0; i <= vault.size(); i++) {
-
-
-        	}
-        	maxWeight = maxWeight - x;
+    public void calcResult() {
+        int index = 0;
+        // calculate our result
+        while (maxWeight > 0) {
+            Bag curr = vault.get(index);
+            if (maxWeight >= curr.getWeight()) {
+                maxWeight -= curr.getWeight();
+                result += curr.getValue();
+            } else {
+                result += curr.getUnitValue() * maxWeight;
+                maxWeight = 0;
+            }
         }
+    }
 
+    public double getResult() {
+        return result;
+    }
+}
+
+class Bag implements Comparable<Bag> {
+    private int weight;
+    private double value, unitvalue;
+
+    public Bag(int weight, double value) {
+        weight = weight;
+        value = value;
+        unitvalue = value / weight;
+    }
+
+    public int compareTo(Bag other) {
+        return Integer.parseInt(other.getUnitValue() - unitvalue);
+    }
+
+    public double getUnitValue() {
+        return unitvalue;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public double getValue() {
+        return value;
     }
 }
