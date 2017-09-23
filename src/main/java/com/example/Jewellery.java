@@ -1,4 +1,5 @@
 import java.util.*;
+import example.*;
 
 public class Jewellery {
     private ArrayList<Bag> vault;
@@ -58,18 +59,5 @@ class Bag implements Comparable<Bag> {
 
     public double getValue() {
         return value;
-    }
-}
-
-class JewelleryWrapper {
-    private double maxWeight;
-    private ArrayList<HashMap<Double, Double>> vault;
-
-    public double getMaxWeight() {
-        return maxWeight;
-    }
-
-    public ArrayList<HashMap<Double, Double>> getVault() {
-        return vault;
     }
 }
