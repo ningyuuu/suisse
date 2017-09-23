@@ -39,7 +39,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.example.*;
+import com.example.Jewellery;
+import com.example.JewelleryWrapper;
 
 @Controller
 @SpringBootApplication
