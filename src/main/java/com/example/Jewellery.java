@@ -1,63 +1,65 @@
-// import java.util.*;
+package com.example;
 
-// public class Jewellery {
-//     private ArrayList<Bag> vault;
-//     private int maxWeight;
-//     private double result;
+import java.util.*;
+import com.example.*;
 
-//     public Jewellery(JsonObject input) {
-//         vault = new ArrayList<Bag>();
+public class Jewellery {
+    private ArrayList<Bag> vault;
+    private int maxWeight;
+    private double result;
 
-//         for (JsonObject item: input.vault) {
-//             vault.add(new Bag(item.weight, item.value));
-//         }
+    public Jewellery(JewelleryWrapper input) {
+        vault = new ArrayList<Bag>();
 
-//         Collections.sort(vault);
-//     }
+        for (HashMap<Double, Double> item: input.getVault()) {
+            vault.add(new Bag(item.get("weight"), item.get("value")));
+        }
 
-//     public void calcResult() {
-//         int index = 0;
-//         // calculate our result
-//         while (maxWeight > 0) {
-//             Bag curr = vault.get(index);
-//             if (maxWeight >= curr.getWeight()) {
-//                 maxWeight -= curr.getWeight();
-//                 result += curr.getValue();
-//             } else {
-//                 result += curr.getUnitValue() * maxWeight;
-//                 maxWeight = 0;
-//             }
-//         }
-//     }
+        Collections.sort(vault);
+    }
 
-//     public double getResult() {
-//         return result;
-//     }
-// }
+    public void calcResult() {
+        int index = 0;
+        // calculate our result
+        while (maxWeight > 0) {
+            Bag curr = vault.get(index);
+            if (maxWeight >= curr.getWeight()) {
+                maxWeight -= curr.getWeight();
+                result += curr.getValue();
+            } else {
+                result += curr.getUnitValue() * maxWeight;
+                maxWeight = 0;
+            }
+        }
+    }
 
-// class Bag implements Comparable<Bag> {
-//     private int weight;
-//     private double value, unitvalue;
+    public double getResult() {
+        return result;
+    }
+}
 
-//     public Bag(int weight, double value) {
-//         weight = weight;
-//         value = value;
-//         unitvalue = value / weight;
-//     }
+class Bag implements Comparable<Bag> {
+    private double weight, value, unitvalue;
 
-//     public int compareTo(Bag other) {
-//         return Integer.parseInt(other.getUnitValue() - unitvalue);
-//     }
+    public Bag(double weight, double value) {
+        weight = weight;
+        value = value;
+        unitvalue = value / weight;
+    }
 
-//     public double getUnitValue() {
-//         return unitvalue;
-//     }
+    public int compareTo(Bag other) {
+        return (int)(other.getUnitValue() - unitvalue);
+    }
 
-//     public int getWeight() {
-//         return weight;
-//     }
+    public double getUnitValue() {
+        return unitvalue;
+    }
 
-//     public double getValue() {
-//         return value;
-//     }
-// }
+    public double getWeight() {
+        return weight;
+    }
+
+    public double getValue() {
+        return value;
+    }
+}
