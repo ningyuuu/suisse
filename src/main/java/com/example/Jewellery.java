@@ -5,7 +5,7 @@ import com.example.*;
 
 public class Jewellery {
     private ArrayList<Bag> vault;
-    private int maxWeight;
+    private double maxWeight;
     private double result = 0;
     // private double[] testWeight = new double[4];
     // private double[] testValue = new double[4];
@@ -19,7 +19,7 @@ public class Jewellery {
         }
 
         this.maxWeight = input.getMaxWeight();
-        
+
         Collections.sort(vault);
 
     }

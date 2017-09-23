@@ -3,10 +3,10 @@ package com.example;
 import java.util.*;
 
 public class JewelleryWrapper {
-    private int maxWeight;
+    private double maxWeight;
     private ArrayList<HashMap<String, Double>> vault;
 
-    public int getMaxWeight() {
+    public double getMaxWeight() {
         return maxWeight;
     }
 
