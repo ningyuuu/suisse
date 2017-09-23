@@ -127,7 +127,7 @@ public class Main {
   @ResponseBody
   public String releaseSchedule(@RequestBody ArrayList<String> inputs) {
     ReleaseSchedule rs = new ReleaseSchedule(inputs);
-    return rs.getTimeGap();
+    return rs.getTimeGap().toString();
   }
 
   public static class InputWrapper {

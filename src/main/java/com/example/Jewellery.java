@@ -78,7 +78,7 @@ class Bag implements Comparable<Bag> {
     }
 
     public double getUnitValue() {
-        resulteturn unitvalue;
+        return unitvalue;
     }
 
     public double getWeight() {
