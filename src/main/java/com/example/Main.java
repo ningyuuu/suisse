@@ -83,7 +83,8 @@ public class Main {
   String ningyu(@RequestBody InputWrapper wrapper) {
     int number = wrapper.getNumber();
     String word = wrapper.getWord();
-    String response = "number is " + number + " , and word is " + word;
+    // String response = "number is " + number + " , and word is " + word;
+    String response = "thanks";
       return response;
   }
 
