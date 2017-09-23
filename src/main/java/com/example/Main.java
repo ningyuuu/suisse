@@ -40,6 +40,7 @@ import java.util.*;
 
 import com.example.Jewellery;
 import com.example.JewelleryWrapper;
+import com.example.ReleaseSchedule;
 
 @Controller
 @SpringBootApplication
@@ -124,7 +125,10 @@ public class Main {
 
   @RequestMapping(value="/releaseSchedule", method=RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String releaseSchedule(@RequestBody ArrayList<String>)
+  public String releaseSchedule(@RequestBody ArrayList<String> inputs) {
+    ReleaseSchedule rs = new ReleaseSchedule(inputs);
+    return rs.getTimeGap();
+  }
 
   public static class InputWrapper {
     private int number;
