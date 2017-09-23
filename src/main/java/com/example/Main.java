@@ -37,6 +37,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import org.json.JSONObject;
 
 @Controller
 @SpringBootApplication
@@ -81,11 +82,12 @@ public class Main {
   @RequestMapping(value = "/ningyu", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
   public String ningyu(@RequestBody InputWrapper wrapper) {
+    JSONObject response = new JSONObject();
     int number = wrapper.getNumber();
     String word = wrapper.getWord();
     // String response = "number is " + number + " , and word is " + word;
-    String response = "thanks";
-      return response;
+    response.put("response","thanks");
+      return response.toString();
   }
 
   public static class InputWrapper {
