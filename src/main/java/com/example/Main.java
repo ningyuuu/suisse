@@ -39,7 +39,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
-import example.*;
+import main.java.com.example.*;
 
 @Controller
 @SpringBootApplication
