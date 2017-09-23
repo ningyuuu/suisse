@@ -81,13 +81,13 @@ public class Main {
 
   @RequestMapping(value = "/ningyu", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String ningyu(@RequestBody InputWrapper wrapper) {
+  public JSONObject ningyu(@RequestBody InputWrapper wrapper) {
     JSONObject response = new JSONObject();
     int number = wrapper.getNumber();
     String word = wrapper.getWord();
     // String response = "number is " + number + " , and word is " + word;
     response.put("response","thanks");
-      return response.toString();
+      return response.;
   }
 
   public static class InputWrapper {
