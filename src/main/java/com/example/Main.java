@@ -85,21 +85,27 @@ public class Main {
     JSONObject response = new JSONObject();
     int number = wrapper.getNumber();
     String word = wrapper.getWord();
+    int[] array = wrapper.getArray();
     // String response = "number is " + number + " , and word is " + word;
     response.put("number", number);
     response.put("myword", word);
+    response.put("this is the array received", array);
       return response.toString();
   }
 
   public static class InputWrapper {
     private int number;
     private String word;
+    private int[] array;
 
     public int getNumber(){
       return number;      
     }
     public String getWord(){
       return word;
+    }    
+    public int[] getArray(){
+      return array;
     }
   }
 
