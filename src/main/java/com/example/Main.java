@@ -114,9 +114,11 @@ public class Main {
 
   @RequestMapping(value = "/sort", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String sort(@RequestBody int[] array){
+  public String sort(@RequestBody SortWrapper wrapper){
     JSONObject response = new JSONObject();
-    response.put("return", array);
+    Sort sort = new Sort(wrapper);
+    int[] array = sort.sortArray();
+    response.put("response", array);
     return response.toString();
   }
 
