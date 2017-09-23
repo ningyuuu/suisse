@@ -25,6 +25,9 @@ public class Jewellery {
     }
 
     public void calcResult() {
+        if(vault.isEmpty()){
+            return;
+        }
         int index = 0;
         // calculate our result
         while (maxWeight > 0) {
