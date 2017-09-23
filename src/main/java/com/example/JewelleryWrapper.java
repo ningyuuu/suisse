@@ -1,3 +1,5 @@
+package com.example.JewelleryWrapper;
+
 import java.util.*;
 
 public class JewelleryWrapper {

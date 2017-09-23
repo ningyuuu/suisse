@@ -1,3 +1,5 @@
+package com.example;
+
 import java.util.*;
 import com.example.*;
 
@@ -39,14 +41,14 @@ public class Jewellery {
 class Bag implements Comparable<Bag> {
     private double weight, value, unitvalue;
 
-    public Bag(int weight, double value) {
+    public Bag(double weight, double value) {
         weight = weight;
         value = value;
         unitvalue = value / weight;
     }
 
     public int compareTo(Bag other) {
-        return Integer.parseInt(other.getUnitValue() - unitvalue);
+        return (int)(other.getUnitValue() - unitvalue);
     }
 
     public double getUnitValue() {
