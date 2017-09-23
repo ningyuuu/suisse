@@ -91,10 +91,10 @@ public class Main {
     private int number;
     private String word;
 
-    public getNumber(){
+    public int getNumber(){
       return number;      
     }
-    public getWord(){
+    public String getWord(){
       return word;
     }
   }
