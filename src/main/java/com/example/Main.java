@@ -79,7 +79,7 @@ public class Main {
 
   @RequestMapping(value = "/ningyu", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  String ningyu(@RequestParam(value="json") String json) {
+  String ningyu(@RequestBody String json) {
       return json;
   }
 
