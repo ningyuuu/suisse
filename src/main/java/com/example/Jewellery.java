@@ -14,9 +14,11 @@ public class Jewellery {
     public Jewellery(JewelleryWrapper input) {
         vault = new ArrayList<Bag>();
 
-        for (HashMap<String, Double> item: input.getVault()) {
-            vault.add(new Bag(item.get("weight"), item.get("value")));
-        }
+        if(input.getVault().size() != 0 ){
+            for (HashMap<String, Double> item: input.getVault()) {
+                vault.add(new Bag(item.get("weight"), item.get("value")));
+            }
+        }        
 
         this.maxWeight = input.getMaxWeight();
 
@@ -25,13 +27,12 @@ public class Jewellery {
     }
 
     public void calcResult() {
-        if(vault.isEmpty()){
-            result = 0;
+        if(vault.size() == 0 ){
             return;
         }
         int index = 0;
         // calculate our result
-        while (maxWeight > 0) {
+        while (maxWeight > 0 && index < vault.size()) {
             Bag curr = vault.get(index);
             if (maxWeight >= curr.getWeight()) {
                 maxWeight -= curr.getWeight();
