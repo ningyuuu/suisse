@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import javax.json.JsonObject;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -79,8 +80,8 @@ public class Main {
 
   @RequestMapping(value = "/ningyu", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  String ningyu(@RequestParam("json") String json) {
-      return json;
+  String ningyu(JsonObject json) {
+      return json.getString("json");
   }
 
   @Bean
