@@ -36,8 +36,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 import com.example.Jewellery;
 import com.example.JewelleryWrapper;
@@ -130,12 +129,10 @@ public class Main {
 
   @RequestMapping(value = "/sort", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String sort(@RequestBody SortWrapper wrapper){
-    JSONObject response = new JSONObject();
-    Sort sort = new Sort(wrapper);
-    int[] array = sort.sortArray();
-    response.put("response", array);
-    return response.toString();
+  public int[] sort(@RequestBody int[] numbers){
+    // JSONObject response = new JSONObject();
+    Arrays.sort(numbers);
+    return numbers;    
   }
 
   @Bean
