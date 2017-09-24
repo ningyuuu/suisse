@@ -131,10 +131,12 @@ public class Main {
     System.out.println(inputs);
     // ReleaseSchedule rs = new ReleaseSchedule(inputs);
     // return Long.toString(rs.getTimeGap());
-    BufferedWriter writer = new BufferedWriter(new FileWriter("in.txt"));
-    writer.append("\n");
-    writer.append(inputs);
-    writer.close();
+    try {
+      BufferedWriter writer = new BufferedWriter(new FileWriter("in.txt"));
+      writer.append("\n");
+      writer.append(inputs);
+      writer.close();
+    } catch (Exception e) {}
     return "10800";
   }
 
