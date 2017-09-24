@@ -114,7 +114,7 @@ public class Main {
     // double[] unitvalue = new double[4];
     // for(int i=0; i<4; i++){
     //   weight[i] = vault.get(i).getWeight();
-    //   value[i] = vault.get(i).getValue();
+    //   value[i]= vault.get(i).getValue();
     //   unitvalue[i] = vault.get(i).getUnitValue();
     // }
     String result = "111";
