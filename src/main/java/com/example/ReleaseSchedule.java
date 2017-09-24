@@ -96,7 +96,7 @@ class Timeline {
 		}
 
 		// final check
-		diffInSeconds = barEnd.minus(end); 
+		diffInSeconds = end.minus(barEnd); 
 		if (diffInSeconds > seconds) {
 			seconds = diffInSeconds;
 		}
@@ -112,16 +112,16 @@ class Timeline {
 		if (newend.minus(end) > 0) {
 			newend = end;
 		}
-		start.print();
-		newstart.print();
-		System.out.println(newstart.minus(start));
-		newend.print();
-		end.print();
-		System.out.println(newend.minus(end));
+		// start.print();
+		// newstart.print();
+		// System.out.println(newstart.minus(start));
+		// newend.print();
+		// end.print();
+		// System.out.println(newend.minus(end));
 		ArrayList<TimeBar> betweens = new ArrayList<TimeBar>();
 		// System.out.println("NUM BARS CURRENT: " + bars.size());
 		for (TimeBar bar: bars) {
-			System.out.println("BAR START: " + bar.start + " BAR END: " + bar.end);
+			// System.out.println("BAR START: " + bar.start + " BAR END: " + bar.end);
 			if (bar.start.minus(newend) > 0) {
 				System.out.println("BREAK FOR: " + bar.start.minus(newend));
 				break;
@@ -152,9 +152,9 @@ class Timeline {
  		}
  		bars.add(new TimeBar(newstart, newend));
  		Collections.sort(bars);
- 		System.out.println("SIZE:" + bars.size());
- 		bars.get(0).start.print();
- 		bars.get(0).end.print();
+ 		// System.out.println("SIZE:" + bars.size());
+ 		// bars.get(0).start.print();
+ 		// bars.get(0).end.print();
 	}
 }
 
