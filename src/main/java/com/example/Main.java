@@ -102,11 +102,13 @@ public class Main {
 
   @RequestMapping(value="/heist", method=RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String heist(@RequestBody JewelleryWrapper wrapper) {
-    Jewellery jewellery = new Jewellery(wrapper);
-    jewellery.calcResult();
-    double result = jewellery.getResult();
-    ArrayList<Bag> vault = jewellery.getVault();
+  // public String heist(@RequestBody JewelleryWrapper wrapper) {
+  public String heist(@RequestBody String wrapper) {
+    System.out.println(wrapper);
+    // Jewellery jewellery = new Jewellery(wrapper);
+    // jewellery.calcResult();
+    // double result = jewellery.getResult();
+    // ArrayList<Bag> vault = jewellery.getVault();
     // double[] weight = new double[4];
     // double[] value = new double[4];
     // double[] unitvalue = new double[4];
@@ -115,7 +117,7 @@ public class Main {
     //   value[i] = vault.get(i).getValue();
     //   unitvalue[i] = vault.get(i).getUnitValue();
     // }
-
+    String result = "111";
     JSONObject response = new JSONObject();
     response.put("heist", result);
     // response.put("sorted weight", weight);
@@ -127,17 +129,17 @@ public class Main {
 
   @RequestMapping(value="/releaseSchedule", method=RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String releaseSchedule(@RequestBody String inputs) {
-    System.out.println(inputs);
-    // ReleaseSchedule rs = new ReleaseSchedule(inputs);
-    // return Long.toString(rs.getTimeGap());
-    try {
-      BufferedWriter writer = new BufferedWriter(new FileWriter("in.txt"));
-      writer.append("\n");
-      writer.append(inputs);
-      writer.close();
-    } catch (Exception e) {}
-    return "10800";
+  public String releaseSchedule(@RequestBody ArrayList<Integer> inputs) {
+    // System.out.println(inputs);
+    ReleaseSchedule rs = new ReleaseSchedule(inputs);
+    return Long.toString(rs.getTimeGap());
+    // try {
+    //   BufferedWriter writer = new BufferedWriter(new FileWriter("in.txt"));
+    //   writer.append("\n");
+    //   writer.append(inputs);
+    //   writer.close();
+    // } catch (Exception e) {}
+    // return "10800";
   }
 
   public static class InputWrapper {
