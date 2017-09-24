@@ -36,11 +36,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 import com.example.Jewellery;
 import com.example.JewelleryWrapper;
+import com.example.EmptyArea;
+import com.example.EmptyAreaWrapper;
 
 @Controller
 @SpringBootApplication
@@ -104,8 +105,22 @@ public class Main {
     Jewellery jewellery = new Jewellery(wrapper);
     jewellery.calcResult();
     double result = jewellery.getResult();
+    ArrayList<Bag> vault = jewellery.getVault();
+    // double[] weight = new double[4];
+    // double[] value = new double[4];
+    // double[] unitvalue = new double[4];
+    // for(int i=0; i<4; i++){
+    //   weight[i] = vault.get(i).getWeight();
+    //   value[i] = vault.get(i).getValue();
+    //   unitvalue[i] = vault.get(i).getUnitValue();
+    // }
+
     JSONObject response = new JSONObject();
     response.put("heist", result);
+    // response.put("sorted weight", weight);
+    // response.put("sorted value", value);
+    // response.put("sorted unitvalue", unitvalue);
+
     return response.toString();
   }
 
@@ -128,12 +143,42 @@ public class Main {
 
   @RequestMapping(value = "/sort", method = RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String sort(@RequestBody SortWrapper wrapper){
-    JSONObject response = new JSONObject();
-    Sort sort = new Sort(wrapper);
-    int[] array = sort.sortArray();
-    response.put("response", array);
-    return response.toString();
+  public ArrayList<Integer> sort(@RequestBody ArrayList<Integer> numbers){
+    // JSONObject response = new JSONObject();
+    Collections.sort(numbers);
+    return numbers;    
+  }
+
+  @RequestMapping(value ="/calculateemptyarea", method=RequestMethod.POST, produces="application/json")
+  @ResponseBody
+  public String calculateemptyarea(@RequestBody EmptyAreaWrapper wrapper){
+      // EmptyArea emptyArea = new EmptyArea(wrapper);
+      // double area = 0;
+      // if(wrapper.getRectangle() != null){
+      //   area = emptyArea.calculateAreaRect(wrapper.getContainer(), wrapper.getRectangle());
+      // }
+      // if(wrapper.getSquare() != null){
+      //   area = emptyArea.calculateAreaSq(wrapper.getContainer(), wrapper.getSquare());
+      // }
+      // if(wrapper.getCircle() != null){
+      //   area = emptyArea.calculateAreaCircle(wrapper.getContainer(), wrapper.getCircle());
+      // }
+      // return area;      
+      JSONObject response = new JSONObject();
+      response.put("wrapper", wrapper);      
+      response.put("container", wrapper.getContainer());
+      response.put("rectangleWidth", wrapper.getRectangle().getWidth());
+      response.put("rectangleheight", wrapper.getRectangle().getHeight());
+      response.put("rectangleArea", wrapper.getRectangle().getArea());
+      response.put("rectangleX1", wrapper.getRectangle().getCoordinate().getX());
+      response.put("rectangleY1", wrapper.getRectangle().getCoordinate().getY());
+      response.put("rectangleX2", wrapper.getRectangle().getx2());
+      response.put("rectangleY2", wrapper.getRectangle().gety2());
+      response.put("containerX1", wrapper.getContainer().getx1());
+      response.put("containerY1", wrapper.getContainer().gety1());
+      response.put("containerX2", wrapper.getContainer().getx2());
+      response.put("containerY2", wrapper.getContainer().gety2());
+      return response.toString();
   }
 
   @Bean
