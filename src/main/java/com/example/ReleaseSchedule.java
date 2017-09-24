@@ -23,6 +23,7 @@ public class ReleaseSchedule {
 		// System.out.println(input.get(0));
 
 		for (int i=1; i<input.size(); i++) {
+			System.out.println("INSERT: " + input.get(i));
 			String[] splits = input.get(i).split(";");
 			tl.insert(new Time(splits[1]), new Time(splits[2]));
 		}
@@ -46,9 +47,11 @@ public class ReleaseSchedule {
 class Time implements Comparable<Time> {
 	// 13:00:00.000+0800
 	// 05:15:00.000Z
+	String timestring;
 	DateFormat df;
 	public Date time;
 	public Time(String timestring) {
+		this.timestring = timestring;
 		df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSSX");
 		try {
 			time = df.parse(timestring);
@@ -62,7 +65,11 @@ class Time implements Comparable<Time> {
 	}
 
 	public long minus(Time other) {
-		return (int)(time.getTime() - other.time.getTime())/-1000;
+		return (int)(time.getTime() - other.time.getTime())/1000;
+	}
+
+	public void print() {
+		System.out.println(time.toString());
 	}
 }
 
@@ -80,7 +87,7 @@ class Timeline {
 		long diffInSeconds, seconds = 0;
 
 		for (TimeBar timeBar: bars) {
-			diffInSeconds = barEnd.minus(timeBar.start);
+			diffInSeconds = timeBar.start.minus(barEnd);
 			System.out.println(diffInSeconds);
 			if (diffInSeconds > seconds) {
 				seconds = diffInSeconds;
@@ -97,34 +104,57 @@ class Timeline {
 		return seconds;
 	}
 
-	public void insert(Time start, Time end) {
+	public void insert(Time newstart, Time newend) {
+		if (start.minus(newstart) > 0) {
+			newstart = start;
+		}
+
+		if (newend.minus(end) > 0) {
+			newend = end;
+		}
+		start.print();
+		newstart.print();
+		System.out.println(newstart.minus(start));
+		newend.print();
+		end.print();
+		System.out.println(newend.minus(end));
 		ArrayList<TimeBar> betweens = new ArrayList<TimeBar>();
+		// System.out.println("NUM BARS CURRENT: " + bars.size());
 		for (TimeBar bar: bars) {
-			if (bar.start.minus(end) > 0) {
+			System.out.println("BAR START: " + bar.start + " BAR END: " + bar.end);
+			if (bar.start.minus(newend) > 0) {
+				System.out.println("BREAK FOR: " + bar.start.minus(newend));
 				break;
 			}
 
-			if (start.minus(bar.start) > 0 && bar.end.minus(start) >= 0) {
-				start = bar.start;
+			if (newstart.minus(bar.start) > 0 && bar.end.minus(newstart) >= 0) {
+				System.out.println("NEW START");
+				newstart = bar.start;
 				betweens.add(bar);
 				continue;
 			}
 
-			if (bar.start.minus(start) >= 0 && end.minus(bar.end) >= 0) {
+			if (bar.start.minus(newstart) >= 0 && newend.minus(bar.end) >= 0) {
+ 				System.out.println("NEW BETWEEN");
 				betweens.add(bar);
 				continue;
 			}
 
-			if (end.minus(bar.start) >= 0 && bar.end.minus(end) > 0) {
-				end = bar.end;
+			if (newend.minus(bar.start) >= 0 && bar.end.minus(newend) > 0) {
+ 				System.out.println("NEW END");
+				newend = bar.end;
 				betweens.add(bar);
 			}
  		}
  		for (TimeBar bar:betweens) {
+ 			System.out.println("DELETE A BAR");
  			bars.remove(bar);
  		}
- 		bars.add(new TimeBar(start, end));
+ 		bars.add(new TimeBar(newstart, newend));
  		Collections.sort(bars);
+ 		System.out.println("SIZE:" + bars.size());
+ 		bars.get(0).start.print();
+ 		bars.get(0).end.print();
 	}
 }
 
