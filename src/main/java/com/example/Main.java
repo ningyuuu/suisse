@@ -129,7 +129,7 @@ public class Main {
 
   @RequestMapping(value="/releaseSchedule", method=RequestMethod.POST, produces="application/json")
   @ResponseBody
-  public String releaseSchedule(@RequestBody ArrayList<Integer> inputs) {
+  public String releaseSchedule(@RequestBody ArrayList<String> inputs) {
     // System.out.println(inputs);
     ReleaseSchedule rs = new ReleaseSchedule(inputs);
     return Long.toString(rs.getTimeGap());
