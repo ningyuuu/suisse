@@ -102,22 +102,20 @@ public class Main {
 
   @RequestMapping(value="/heist", method=RequestMethod.POST, produces="application/json")
   @ResponseBody
-  // public String heist(@RequestBody JewelleryWrapper wrapper) {
-  public String heist(@RequestBody String wrapper) {
-    System.out.println(wrapper);
-    // Jewellery jewellery = new Jewellery(wrapper);
-    // jewellery.calcResult();
-    // double result = jewellery.getResult();
-    // ArrayList<Bag> vault = jewellery.getVault();
+  public String heist(@RequestBody JewelleryWrapper wrapper) {
+    Jewellery jewellery = new Jewellery(wrapper);
+    jewellery.calcResult();
+    double result = jewellery.getResult();
+    ArrayList<Bag> vault = jewellery.getVault();
     // double[] weight = new double[4];
     // double[] value = new double[4];
     // double[] unitvalue = new double[4];
     // for(int i=0; i<4; i++){
     //   weight[i] = vault.get(i).getWeight();
-    //   value[i]= vault.get(i).getValue();
+    //   value[i] = vault.get(i).getValue();
     //   unitvalue[i] = vault.get(i).getUnitValue();
     // }
-    String result = "111";
+
     JSONObject response = new JSONObject();
     response.put("heist", result);
     // response.put("sorted weight", weight);
